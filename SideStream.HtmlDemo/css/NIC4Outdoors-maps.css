@@ -1,0 +1,309 @@
+﻿ .maps-info
+        {
+            position:absolute;
+
+            width:265px;
+            height:145px;
+            border:1px solid #333333;
+            background-color:#333333;  
+                      
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+                       
+            -webkit-box-shadow: #B3B3B3 3px 3px 3px;
+            -moz-box-shadow: #B3B3B3 3px 3px 3px; 
+            box-shadow: #B3B3B3 3px 3px 3px;
+        } 
+        .maps-info:after {
+	        top: 100%;
+	        left: 75px;
+	        border: solid transparent;
+	        content: " ";
+	        height: 0;
+	        width: 0;
+	        position: absolute;
+	        pointer-events: none;
+	        border-color: rgba(51, 51, 51, 0);
+	        border-top-color: #333333;
+	        border-width: 20px;
+	        margin-left: -20px;
+        }
+        
+        .maps-info-flickr
+        {
+
+        }
+
+        .maps-info-title
+        {
+            position:relative;
+            height:20px;
+            color:#ffffff;
+        }
+
+        .maps-info-title .glyphicon-menu-left
+        {
+            height:20px;
+            width:20px;
+            position:absolute;
+            top:0px;
+            left:0px;
+            padding-top:2px;
+            padding-left:1px;
+            cursor:pointer;
+        }
+
+        .maps-info-title .glyphicon-menu-right
+        {
+            height:20px;
+            width:20px;
+            position:absolute;
+            top:0px;
+            left:244px;
+            padding-top:2px;
+            padding-right:3px;
+            cursor:pointer;
+        }
+
+        .maps-info-flickr .maps-info-logo {
+            background-image: url('../images/Flickr.png');
+            height:40px;
+            width:52px;
+            position:absolute;
+            top:-10px;
+            left:20px;
+        }
+
+        .maps-info-flickr .maps-info-title-text
+        {
+            position:absolute;
+            top:0px;
+            left:75px;
+            width:150px;
+            overflow:hidden;
+            font-size:12px;
+            padding-top:2px;
+        }
+
+        .maps-info-body
+        {
+            position:relative;
+            background-color: #ffffff;
+            height:110px;
+        }
+
+        .maps-info-body img
+        {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            max-width:80px;
+            max-height:80px;
+        }
+
+        .maps-info-body .maps-info-attr
+        {
+            position:absolute;
+            top:93px;
+            left:4px;
+            font-size:10px;
+            width:130px;
+            text-align:left;
+            overflow:hidden;
+        }
+        .maps-info-body .maps-info-attr b
+        {
+            font-size:8px;
+            font-weight:bolder;
+        }
+        .maps-info-desc
+        {
+            position:absolute;
+            top:5px;
+            left:110px;
+            width:153px;
+            height:88px;
+            overflow:auto;
+            overflow-x:hidden;
+            overflow-y:scroll;
+            font-size:12px;
+            
+        }
+
+        .maps-info-footer
+        {
+            position:relative;
+            padding-left:5px;
+            color:#ffffff;
+            font-size:10px;
+        }
+
+        .maps-info-buttons
+        {
+            position:absolute;
+            top:-5px;
+            left: 128px;
+        }
+
+        .maps-info-buttons>div
+        {
+            width:24px;
+            height:24px;
+            background-color:#333333;  
+            font-size:14px;
+            padding-top:1px;
+            text-align:center;
+            float:left;
+            margin-left:6px;
+            border:2px solid #333333;
+            cursor:pointer;
+                      
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+                       
+            -webkit-box-shadow: rgba(0,0,0,0.7) 1px 1px 3px;
+            -moz-box-shadow: rgba(0,0,0,0.7) 1px 1px 3px;
+            box-shadow: rgba(0,0,0,0.7) 1px 1px 3px;
+        }
+        .maps-info-buttons>div:hover,
+        .maps-info-buttons>div:active
+        {
+            background-color:#ffffff;
+            color:#333333;
+        }
+
+        div.maps-info-close
+        {
+            margin-left:15px;
+        }
+
+        .modal {
+            background-color: rgba(0,0,0,.75);
+            overflow: hidden;
+        }
+
+        .modal-content {
+            background-color: rgba(0,0,0,.1);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .js-fullscreen {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        .maps-details-body {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .maps-details-leftpane {
+            padding-left: 10px;
+            text-align: center;
+            width: 60%;
+            height: 100%;
+            float: left;
+            overflow: hidden;
+        }
+
+        .maps-details-img {
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align:middle;
+        }
+
+        .maps-details-rightpane {
+            float: right;
+            width: 38%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .maps-details-desc {
+            height: 100%;
+            color: #ffffff;
+            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-right: 20px;
+            font-size:12pt;
+        }
+
+
+
+        .maps-details-footer {
+            background-color: rgba(0,0,0,.9);
+            height: 40px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .maps-details-buttons {
+            font-size: 18px;
+            float: right;
+        }
+            .maps-details-buttons div {
+                margin-right: 15px;
+                margin-top: 5px;
+                padding: 5px;
+                float: left;
+                color:#cccccc;
+                cursor:pointer;
+            }
+            .maps-details-buttons div:hover,
+            .maps-details-buttons div:active
+             {
+                color:#ffffff;
+            }
+
+       .maps-details-nav {
+            font-size: 18px;
+            float: left;
+        }
+            .maps-details-nav div {
+                margin-left: 15px;
+                margin-top: 5px;
+                padding: 5px;
+                float: left;
+                color:#cccccc;
+                cursor:pointer;
+            }
+            .maps-details-nav div:hover,
+            .maps-details-nav div:active
+             {
+                color:#ffffff;
+            }
+
+        .maps-details-footer-text{
+            display:block;
+            float:left;
+            padding-left:10px;
+            padding-top:12px;
+        }
+
+
+
+        .maps-details .maps-details-badge{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:137px;
+            height:95px;
+        }
+
+        .maps-details-flickr .maps-details-badge{
+            background-image: url('../images/FlickrCorner.png');
+        }
+        
+        .small-caps
+        {
+            text-transform: uppercase;
+            font-size: 95%;
+            font-weight:bolder;
+        }

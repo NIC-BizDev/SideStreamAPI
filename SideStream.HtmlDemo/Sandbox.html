@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Style Sandbox -->
+    <style type="text/css">
+        .modal {
+            background-color: rgba(0,0,0,.75);
+            overflow: hidden;
+        }
+
+        .modal-content {
+            background-color: rgba(0,0,0,.1);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .js-fullscreen {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        .maps-details-body {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .maps-details-leftpane {
+            padding-left: 10px;
+            text-align: center;
+            width: 60%;
+            height: 100%;
+            float: left;
+            overflow: hidden;
+        }
+
+        .maps-details-img {
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align:middle;
+        }
+
+        .maps-details-rightpane {
+            float: right;
+            width: 38%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .maps-details-desc {
+            height: 100%;
+            color: #ffffff;
+            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-right: 20px;
+            font-size:12pt;
+        }
+
+
+
+        .maps-details-footer {
+            background-color: rgba(0,0,0,.9);
+            height: 40px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .maps-details-buttons {
+            font-size: 18px;
+            float: right;
+        }
+            .maps-details-buttons div {
+                margin-right: 15px;
+                margin-top: 5px;
+                padding: 5px;
+                float: left;
+                color:#cccccc;
+                cursor:pointer;
+            }
+            .maps-details-buttons div:hover,
+            .maps-details-buttons div:active
+             {
+                color:#ffffff;
+            }
+
+       .maps-details-nav {
+            font-size: 18px;
+            float: left;
+        }
+            .maps-details-nav div {
+                margin-left: 15px;
+                margin-top: 5px;
+                padding: 5px;
+                float: left;
+                color:#cccccc;
+                cursor:pointer;
+            }
+            .maps-details-nav div:hover,
+            .maps-details-nav div:active
+             {
+                color:#ffffff;
+            }
+
+        .maps-details-footer-text{
+            display:block;
+            float:left;
+            padding-left:10px;
+            padding-top:12px;
+        }
+
+
+
+        .maps-details .maps-details-badge{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:137px;
+            height:95px;
+        }
+
+        .maps-details-flickr .maps-details-badge{
+            background-image: url('images/FlickrCorner.png');
+        }
+        
+        .small-caps
+        {
+            text-transform: uppercase;
+            font-size: 95%;
+            font-weight:bolder;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Sandbox</h1>
+
+
+    <!-- Html Sandbox -->
+
+
+    <div id="detailbox" class="modal">
+        <div class="modal-dialog js-fullscreen">
+            <div class="modal-content js-fullscreen maps-details maps-details-flickr">
+                <div class="maps-details-header">
+          
+                </div>
+                <div class="maps-details-body" data-height-winminus="80">
+                    <div class="maps-details-leftpane">
+                        <img class="maps-details-img" src="http://raredelights.com/wp-content/uploads/2013/09/Glacier-National-Park-16.jpg">
+                        <!--<img id="flickrDetailImg" class="maps-details-img" onload="" src="https://adventuresofacouchsurfer.files.wordpress.com/2011/08/img_8897-virginia-falls.jpg">-->
+                    </div>
+                    <div class="maps-details-rightpane">
+                        <div class="maps-details-desc">
+                            <p class="text-center">
+                                <b>Image title could be very long because people kinda suck</b>
+                            </p>
+                            <p>
+                                <span class="small-caps">By: </span> Jason Pekovitch
+                            </p>
+                            <p>
+                                <span class="small-caps">Taken: </span> Aug 17, 2014 @4:17PM
+                            </p>
+                            <p>
+                                <span class="small-caps">Description: </span>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quis ipsum hendrerit orci finibus scelerisque. Aenean fermentum purus quis eros gravida, imperdiet feugiat lorem accumsan. Morbi lacinia enim elit, efficitur elementum dui sodales vel. Proin sodales ullamcorper est, nec condimentum velit bibendum vulputate. Quisque imperdiet mauris ac sagittis dignissim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed in nisl ac velit faucibus posuere ac a tellus. Nam et porttitor lacus, at ullamcorper risus. Nunc laoreet imperdiet quam vitae hendrerit. Suspendisse congue blandit purus, quis ultricies arcu efficitur vel. Donec faucibus lectus at sodales lobortis. Integer magna nibh, condimentum non iaculis non, sollicitudin et tortor. Nulla sed sapien vitae felis elementum pulvinar. Ut aliquam dictum nibh, nec cursus turpis egestas vitae. Praesent lobortis tellus sed convallis imperdiet.
+                            </p>
+                            <p>
+                                Mauris mauris turpis, bibendum in egestas quis, porta quis est. Quisque at risus condimentum, molestie tortor tincidunt, accumsan nisl. Morbi mollis id felis sit amet consectetur. Aenean eget posuere orci, sed elementum purus. Donec urna tellus, pellentesque quis bibendum ut, varius et eros. Praesent auctor velit vitae orci bibendum, non sagittis arcu porttitor. Morbi at ex a turpis euismod suscipit. Vivamus pellentesque ultrices sagittis. Aliquam sapien elit, efficitur nec massa non, feugiat bibendum velit. Donec eu nunc et erat condimentum finibus. Vivamus sagittis commodo erat id facilisis. Integer euismod lacus diam, a mattis quam ullamcorper sit amet.
+                            </p>
+                            <p>
+                                <span class="small-caps">Tags: </span>
+                                #backcountry #elevation #glacier #ice #lake #meadow #mountains #national #park #peak #snow #top #trees
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="maps-details-footer">
+                    <div class="maps-details-nav">
+                        <div><span title="Previous Marker" class="glyphicon glyphicon-chevron-left"></span></div>
+                        <div><span title="Next Marker" class="glyphicon glyphicon-chevron-right"></span></div>
+                    </div>
+                    <div class="maps-details-buttons">
+                        <div><span title="Mark as Favorite" class="glyphicon glyphicon-heart"></span></div>
+                        <div><span title="Share" class="glyphicon glyphicon-share"></span></div>
+                        <div class="maps-info-close" data-toggle="modal" data-target="#detailbox"><span title="Close" class="glyphicon glyphicon-remove"></span></div>
+                    </div>
+                </div>
+            <div class="maps-details-badge"></div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#detailbox">
+        Launch demo modal
+    </button>
+
+
+    <!-- INCLUDES -->
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/knockout-3.3.0.js"></script>
+    <script src="js/NIC4Outdoors.js"></script>
+    <script src="js/NIC4Outdoors.Maps.js"></script>
+
+    <!-- Script Sandbox -->
+    <script type="text/javascript">
+
+
+
+        $(window).load(function () {
+            calcSizes();
+        });
+
+        $(window).on('resize', function () {
+            calcSizes();
+        });
+
+        function calcSizes() {
+            var winHeight = $(window).height();
+            var winWidth = $(window).width();
+            $('.js-fullscreen').height(winHeight + 'px').width(winWidth + 'px');
+            $('[data-height-winminus]').each(function () {
+                $(this).height((winHeight - $(this).attr('data-height-winminus')) + 'px');
+            });
+
+        }
+
+    </script>
+
+
+</body>
+</html>

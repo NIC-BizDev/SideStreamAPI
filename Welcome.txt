@@ -1,0 +1,25 @@
+Welcome to the SideStream team hackers!!!
+
+We have uploaded our proof of concept code to the team repo.  Here is what we have so far...
+
+Inside the solution:
+
+The SideStream.API project
+-----------------------------------------------------------------------
+This is the web-api based rest service that will be the primary data provider for the team. It currently only feeds Flickr data so the primary goal here is to add more data sources.  Ironically the RIDB data is not even in here yet.
+To add a data source is pretty simple, just add a new service under the service folder that implements the IPointLayerProvider interface and register it with Ninject in the app_start.
+If someone wants to add a geometry layer we will need to build a new contract and GeoJson serializer.
+
+The SideStream.HtmlDemo project 
+-----------------------------------------------------------------------
+This is our original proof of concept app.  Its pretty fun to play with and has the beginnings of a js client library.  We may want to just let that one lie and use it as a reference.  The page that works for the most part is  Nearby.html
+The js client should probably be broken out to a separate project we can all use to create demo apps.
+
+The SideStream.MvcDemo project 
+-----------------------------------------------------------------------
+This is a blank template a couple of the NIC developers are planning on playing with.  Looking to refine the original demo a bit.
+
+
+The rest
+-----------------------------------------------------------------------
+Join us in adding some new data sources, better js libraries, demo features, add a new project, do some java, perl, php, whatever... We will help you integrate.  Let's have some fun!!
