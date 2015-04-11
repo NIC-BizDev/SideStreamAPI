@@ -1,0 +1,2 @@
+# SideStreamAPI
+The SiedeStream API is a project to enhance RIDB data with data available through other open APIs.  RIDB will give the the geographical data for a recreation site that can be used to find relevant information from various social media outlets in the hopes.  Our goal is to provide the combined data in a normalized format (in this case GeoJSON) to feed useful and engaging recreation applications. 
