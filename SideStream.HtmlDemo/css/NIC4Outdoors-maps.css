@@ -42,29 +42,7 @@
             color:#ffffff;
         }
 
-        .maps-info-title .glyphicon-menu-left
-        {
-            height:20px;
-            width:20px;
-            position:absolute;
-            top:0px;
-            left:0px;
-            padding-top:2px;
-            padding-left:1px;
-            cursor:pointer;
-        }
 
-        .maps-info-title .glyphicon-menu-right
-        {
-            height:20px;
-            width:20px;
-            position:absolute;
-            top:0px;
-            left:244px;
-            padding-top:2px;
-            padding-right:3px;
-            cursor:pointer;
-        }
 
         .maps-info-flickr .maps-info-logo {
             background-image: url('../images/Flickr.png');
@@ -239,7 +217,6 @@
 
         .maps-details-footer {
             background-color: rgba(0,0,0,.9);
-            height: 40px;
             width: 100%;
             margin-top: 10px;
         }
@@ -251,6 +228,7 @@
             .maps-details-buttons div {
                 margin-right: 15px;
                 margin-top: 5px;
+                margin-bottom: 5px;
                 padding: 5px;
                 float: left;
                 color:#cccccc;
@@ -307,3 +285,157 @@
             font-size: 95%;
             font-weight:bolder;
         }
+
+.map-info
+{
+
+} 
+
+.map-info-flickr
+{
+
+}
+
+.map-info-header
+{
+
+}
+
+.map-info-thumbnail
+{
+    float:left;
+}
+
+
+.map-info-text
+{
+    padding-left:20px;
+    width:250px;
+    height:200px;
+    overflow-y:auto;
+}
+
+
+
+
+
+/* -----------------------------------------
+   Icons
+----------------------------------------- */
+@font-face {
+  font-family: 'nic4outdoors-icons';
+  src: url('fonts/nic4outdoors-icons.eot?18319730');
+  src: url('fonts/nic4outdoors-icons.eot?18319730#iefix') format('embedded-opentype'),
+       url('fonts/nic4outdoors-icons.woff?18319730') format('woff'),
+       url('fonts/nic4outdoors-icons.ttf?18319730') format('truetype'),
+       url('fonts/nic4outdoors-icons.svg?18319730#nic4outdoors-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "nic4outdoors-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+}
+.icon-twitter:before { content: '\e800'; } /* '' */
+.icon-cancel-circled:before { content: '\e801'; } /* '' */
+.icon-facebook:before { content: '\e802'; } /* '' */
+.icon-flickr:before { content: '\e803'; } /* '' */
+.icon-youtube:before { content: '\e804'; } /* '' */
+.icon-vimeo:before { content: '\e805'; } /* '' */
+.icon-cancel:before { content: '\e806'; } /* '' */
+.icon-resize-full:before { content: '\e807'; } /* '' */
+.icon-resize-full-alt:before { content: '\e808'; } /* '' */
+.icon-instagram:before { content: '\e809'; } /* '' */
+.icon-export:before { content: '\e80a'; } /* '' */
+.icon-export-alt:before { content: '\e80b'; } /* '' */
+.icon-right-dir:before { content: '\e80c'; } /* '' */
+.icon-left-dir:before { content: '\e80d'; } /* '' */
+.icon-right-open:before { content: '\e80e'; } /* '' */
+.icon-left-open:before { content: '\e80f'; } /* '' */
+.icon-heart:before { content: '\e810'; } /* '' */
+.icon-heart-empty:before { content: '\e811'; } /* '' */
+
+
+/* -----------------------------------------
+   General
+----------------------------------------- */
+.block-list, .block-list li { margin: 0; padding: 0; list-style: none; }
+.text-right { text-align: right; }
+
+header#header { background: #999; margin-bottom: 10px; }
+header#header h1 { font-size: 2.25rem; color: #ddd; }
+header#header h1 small { font-size: 2rem; color: #eee; }
+
+
+/* -----------------------------------------
+   Map
+----------------------------------------- */
+#map-canvas { width: 100%; height: 600px; margin-top: 10px; }
+.maps-details-footer { position: absolute; bottom: 0; width: 100%; }
+
+.maps-info-title .icon-left-dir
+{
+    height:20px;
+    width:20px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    padding-top:2px;
+    padding-left:1px;
+    cursor:pointer;
+}
+
+.maps-info-title .icon-right-dir
+{
+    height:20px;
+    width:20px;
+    position:absolute;
+    top:0px;
+    left:244px;
+    padding-top:2px;
+    padding-right:3px;
+    cursor:pointer;
+}
+
+.filters h2 { font-size: 2rem; }
+.filters li { margin-bottom: 5px; }
+.filters a[class*=icon] { padding: 5px; border-radius: 5px; background: white; color: black; display: inline-block; width: 100%; }
+.filters a[class*=icon]:before { font-size: 130%; margin-right: 10px; }
+.filters a[class*=icon].active { background: #ddd; }
+
+.filters a.icon-facebook.active:before { color: #3b5998; }
+.filters a.icon-instagram.active:before { color: #517fa4; }
+.filters a.icon-twitter.active:before { color: #00aced; }
+.filters a.icon-flickr.active:before { color: #ff0084; }
+.filters a.icon-vimeo.active:before { color: #aad450; }
+.filters a.icon-heart.active:before { color: red; }
+
+
+.filters li a:hover { background: #ddd; }
+
+
+body.modal-active { overflow: hidden; }
+.reveal-modal { top: 0 !important; left: 0; margin: 0; width: 100%; max-width: 100%; height: 100%; background: none; box-shadow: none;
+  border: 0; position: fixed; }
+.reveal-modal-bg { background: rgba(0,0,0,0.8) !important; }
+
+
+
+
+
+
+
+
+

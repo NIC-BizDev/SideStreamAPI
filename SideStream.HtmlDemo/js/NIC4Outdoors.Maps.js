@@ -11,6 +11,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     // ----- Members -----
     var map = googleMap;
     var layers = {}; // Hashmap of NIC4Outdoors.Maps.Layer
+    var layer;
     var infoWindow = new google.maps.InfoWindow({
         pixelOffset: new google.maps.Size(0, 0),
         content: ""
@@ -34,6 +35,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     var closeMarkers = [];
     var closeMarkersIndex = -1;
     var closeMarkersPixelRadius = 40;
+
 
     // ----- Public Methods -----
     this.setInfoWindowContentMethod = function (func) {
@@ -129,7 +131,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     function loadLayer(jsonLayer,clear)
     {
         // Existing Layer
-        var layer = layers[jsonLayer.ds];
+        layer = layers[jsonLayer.ds];
 
         // New Layer
         if(!layer)
@@ -220,6 +222,21 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             }
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Filters
+    ////////////////////////////////////////////////////////////////////////////////    
+    $('[data-layer]').click(function(){
+        var id = $(this).data('layer');
+        $(this).toggleClass('active');
+        if($(this).hasClass('active')) layer.mapLayer.setMap(map);
+        else {
+            layer.mapLayer.setMap(null);
+            layerManager.closeInfoWindow();
+        }
+        return false;
+    });
+
 
   
 };
