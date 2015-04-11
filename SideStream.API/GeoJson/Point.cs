@@ -29,6 +29,8 @@ namespace SideStream.API.GeoJson
                 {
                     case MashupDataSource.Flickr:
                         return "F" + this.Id;
+                    case MashupDataSource.RIDB:
+                        return "R" + this.Id;
                     default:
                         return "U" + this.Id;
                 }

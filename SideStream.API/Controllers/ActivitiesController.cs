@@ -1,5 +1,5 @@
 ﻿using SideStream.API.GeoJson;
-using SideStream.API.Services;
+using SideStream.API.Models;
 using SideStream.API.Services.IOC;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace SideStream.API.Controllers
         [Route("activities/get")]
         public string GetActivities(string lat, string lon, string radius)
         {
-            return Activities.Get(lat, lon, radius);
+            return new Activities(lat, lon, radius).GetJson();
         }
     }
 }
