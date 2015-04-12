@@ -376,12 +376,13 @@
 ----------------------------------------- */
 body { padding-bottom: 30px; }
 body > .row { margin-top: 20px; }
-body, h1, h2, h3, h4, h5 { font-family: 'Open Sans', sans-serif; }
+body, h1, h2, h3, h4, h5 { font-family: 'Open Sans', sans-serif; letter-spacing: -0.05em; }
 
 .block-list, .block-list li, #tags, #tags li { margin: 0; padding: 0; list-style: none; }
 .text-right { text-align: right; }
 
-header#header { background: #333; margin-bottom: 10px; border-bottom: 6px #52A540 solid; padding-top: 5px; }
+header#header { background: #333; margin-bottom: 10px; border-bottom: 6px #52A540 solid; padding-top: 0px; }
+header#header .logo { max-height: 25px; margin: 15px 0; }
 header#header h1 { font-size: 1.25rem; color: #ddd; text-transform: uppercase; }
 header#header h1 small { font-size: 1.25rem; color: #eee; text-transform: capitalize; }
 
@@ -417,9 +418,9 @@ header#header h1 small { font-size: 1.25rem; color: #eee; text-transform: capita
     cursor:pointer;
 }
 
-.filters h2 { font-size: 2rem; line-height: 2rem; color: #52A540; }
-.filters li { margin-bottom: 5px; }
-.filters a[class*=icon] { padding: 5px; border-radius: 5px; background: white; color: black; display: inline-block; width: 100%; }
+.filters h2 { font-size: 1.5rem; line-height: 2rem; color: #52A540; }
+.filters li { margin-bottom: 2px;}
+.filters a[class*=icon] { padding: 5px; border-radius: 5px; background: white; color: black; display: inline-block; width: 100%; letter-spacing: -0.025em;  }
 .filters a[class*=icon]:before { font-size: 130%; margin-right: 10px; }
 .filters a[class*=icon].active { background: #ddd; }
 
@@ -431,10 +432,10 @@ header#header h1 small { font-size: 1.25rem; color: #eee; text-transform: capita
 .filters a.icon-heart.active:before { color: red; }
 
 #tags { max-height: 600px; overflow: auto; }
-#tags li { font-size: 0.75rem; background: #eee; border-radius: 5px; display: inline-block; padding: 3px 5px; margin: 0 5px 5px 0; }
+#tags li { font-size: 0.75rem; background: #eee; border-radius: 5px; display: inline-block; padding: 3px 5px; margin: 0 5px 5px 0; word-break: break-all; }
 #tags li:hover { background: #ddd; cursor: pointer; }
-#tags li.active { background: #d9272e; color: white; }
-#tags .count { font-weight: bold; }
+#tags li.active { background: #52A540; color: white; }
+#tags .count { font-weight: bold; margin-left: 3px; }
 
 .filters li a:hover { background: #ddd; }
 

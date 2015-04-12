@@ -178,13 +178,12 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
                 return true;
             }
         });
+        console.log(filteredData)
         jsonLayer.data.features = filteredData;
 
         layer.count = jsonLayer.cnt;
         layer.page = jsonLayer.pg;
         layer.pages = jsonLayer.pgCnt;
-
-        console.log(layer);
 
         if(clear)
             layer.clear();
