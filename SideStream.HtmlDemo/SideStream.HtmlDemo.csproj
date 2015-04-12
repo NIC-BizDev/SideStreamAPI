@@ -65,13 +65,47 @@
   <ItemGroup>
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap.css.map" />
+    <Content Include="css\fonts\nic4outdoors-icons.svg" />
+    <Content Include="css\foundation.min.css" />
+    <Content Include="css\normalize.css" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="images\NIC4Outdoors-SideStream.png" />
+    <Content Include="images\NIC4Outdoors.png" />
+    <Content Include="js\foundation.min.js" />
+    <Content Include="js\foundation\foundation.abide.js" />
+    <Content Include="js\foundation\foundation.accordion.js" />
+    <Content Include="js\foundation\foundation.alert.js" />
+    <Content Include="js\foundation\foundation.clearing.js" />
+    <Content Include="js\foundation\foundation.dropdown.js" />
+    <Content Include="js\foundation\foundation.equalizer.js" />
+    <Content Include="js\foundation\foundation.interchange.js" />
+    <Content Include="js\foundation\foundation.joyride.js" />
+    <Content Include="js\foundation\foundation.js" />
+    <Content Include="js\foundation\foundation.magellan.js" />
+    <Content Include="js\foundation\foundation.offcanvas.js" />
+    <Content Include="js\foundation\foundation.reveal.js" />
+    <Content Include="js\foundation\foundation.slider.js" />
+    <Content Include="js\foundation\foundation.tab.js" />
+    <Content Include="js\foundation\foundation.tooltip.js" />
+    <Content Include="js\foundation\foundation.topbar.js" />
+    <Content Include="js\foundation\jquery.cookie.js" />
+    <Content Include="js\hackathon.js" />
+    <Content Include="js\vendor\fastclick.js" />
+    <Content Include="js\vendor\jquery.cookie.js" />
+    <Content Include="js\vendor\jquery.js" />
+    <Content Include="js\vendor\modernizr.js" />
+    <Content Include="js\vendor\placeholder.js" />
+    <Content Include="Index.html" />
     <Content Include="ridb_testing.html" />
     <Content Include="Sandbox.html.infoWindow" />
     <Content Include="packages.config" />
+    <Content Include="css\fonts\nic4outdoors-icons.eot" />
+    <Content Include="css\fonts\nic4outdoors-icons.ttf" />
+    <Content Include="css\fonts\nic4outdoors-icons.woff" />
+    <None Include="Properties\PublishProfiles\NIC4Outdoors.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -80,7 +114,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -97,8 +133,8 @@
     <Content Include="js\NIC4Outdoors.js" />
     <Content Include="js\NIC4Outdoors.Maps.js" />
     <Content Include="js\npm.js" />
-    <Content Include="Nearby.html" />
-    <Content Include="Sandbox.html" />
+    <None Include="Nearby.html.bu" />
+    <None Include="Sandbox.html.bu" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
