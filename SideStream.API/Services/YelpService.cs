@@ -110,7 +110,12 @@ namespace SideStream.API.Services
                 // point.Properties.Add("likes", b.);
                 point.Properties.Add("thumbnail", b.snippet_image_url);
                 //point.Properties.Add("thumbnail", p.SquareThumbnailUrl);
-                point.Properties.Add("image", b.image_url.Replace("ms.","o."));
+
+                if (b.image_url != null)
+                    point.Properties.Add("image", b.image_url.Replace("ms.","o."));
+                else
+                    point.Properties.Add("image", "images/default.jpg");
+
                 point.Properties.Add("rating", b.rating);
                 point.Properties.Add("ratingImgUrl", b.rating_img_url);
                 point.Properties.Add("reviewCount",b.review_count);
