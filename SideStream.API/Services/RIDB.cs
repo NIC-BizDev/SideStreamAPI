@@ -62,17 +62,34 @@ namespace SideStream.API.Services
         {
             return CallRIDB(pieces);
         }
-        public static string CallRIDB(Dictionary<string, string> parameters, params string[] pieces)
+        public static string CallRIDB(IDictionary<string, string> parameters, params string[] pieces)
         {
-            var url = GetRidbUrl(pieces);
+            var url = GetRidbUrl(parameters, pieces);
             var client = new WebClient();
             client.Headers.Add("apikey", _ridbApiKey);
             return client.DownloadString(url);
         }
 
-        public static string GetRidbUrl(params string[] pieces)
+        public static string GetRidbUrl(IDictionary<string, string> parameters, params string[] pieces)
+        {
+            var call = GetRidbBase(pieces);
+            var call_params = createParamsString(parameters);
+            return call + (String.IsNullOrEmpty(call_params) ? "" : "&" + call_params);
+        }
+
+        public static string GetRidbBase(params string[] pieces)
         {
             return String.Format("https://{0}/{1}/{2}", _ridbBaseurl, _ridbVersion, String.Join("/", pieces));
+        }
+
+        public static string createParamsString(IDictionary<string, string> parameters)
+        {
+            var parts = new List<string>();
+            foreach (var key in parameters.Keys)
+            {
+                parts.Add(key + "&" + parameters[key]);
+            }
+            return String.Join("&", parts);
         }
 
     }
