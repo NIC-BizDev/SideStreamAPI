@@ -217,6 +217,9 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         if(displayedRecords > 0) $('#count').addClass('active');
         else $('#count').removeClass('active');
 
+        if(remainingRecords <= 0) $('#load-more').hide();
+        else $('#load-more').show();
+
     }
 
     function loadLayer(jsonLayer,clear)
