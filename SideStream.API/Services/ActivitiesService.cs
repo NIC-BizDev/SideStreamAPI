@@ -59,11 +59,12 @@ namespace SideStream.API.Services
 
                     newPoint.AddTag("Event");
 
+                    newPoint.Properties.Add("Type", "Event");
                     var startDate = activity["EventStartDate"].ToString();
                     var endDate = activity["EventEndDate"].ToString();
                     if (startDate == endDate)
                     {
-                        newPoint.Properties.Add("Date", startDate);
+                        newPoint.Properties.Add("Start Date", startDate);
                     }
                     else
                     {
@@ -79,9 +80,10 @@ namespace SideStream.API.Services
 
                     newPoint.AddTag("Tour");
 
+                    newPoint.Properties.Add("Type", "Tour");
                     newPoint.Properties.Add("Description", activity["TourDescription"].ToString());
                     newPoint.Properties.Add("Duration", activity["TourDuration"].ToString());
-                    newPoint.Properties.Add("Type", activity["TourType"].ToString());
+                    newPoint.Properties.Add("TourType", activity["TourType"].ToString());
                     foreach (var attr in activity["ATTRIBUTES"].Children().ToList())
                     {
                         newPoint.Properties.Add(attr["AttributeName"].ToString(), attr["AttributeValue"].ToString());
