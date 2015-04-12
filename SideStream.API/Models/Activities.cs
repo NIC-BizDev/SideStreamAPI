@@ -15,6 +15,8 @@ namespace SideStream.API.Models
 
         public Activities(string lat, string lon, string radius)
         {
+            Events = new Dictionary<string, JToken>();
+            Tours = new Dictionary<string, JToken>();
             LoadActivitiesFromRIDB(lat, lon, radius);
         }
 
@@ -49,7 +51,7 @@ namespace SideStream.API.Models
                 AddActivitiesUnlessThere(Events, RIDB.GetRecAreaEvents(id), "EventID", recLat, recLon);
             }
             var facilities = RIDB.GetFacilities(lat, lon, radius);
-            foreach (var facility in JObject.Parse(facilities).Children().ToList())
+            foreach (var facility in JArray.Parse(facilities).Children().ToList())
             {
                 var id = facility["FacilityID"].ToString();
                 var facLat = facility["FacilityLatitude"].ToString();
@@ -59,16 +61,20 @@ namespace SideStream.API.Models
             }
         }
 
-        private static void AddActivitiesUnlessThere(Dictionary<string, JToken> dict, string json, string key, string lat, string lon) 
+        private static void AddActivitiesUnlessThere(Dictionary<string, JToken> dict, string json, string keyName, string lat, string lon) 
         {
             var things = JArray.Parse(json);
-            foreach (var thing in things.Children<JObject>().ToList())
+            if (things != null)
             {
-                if (!dict.ContainsKey(key))
+                foreach (var thing in things.Children<JObject>().ToList())
                 {
-                    thing["lat"] = lat;
-                    thing["lon"] = lon;
-                    dict.Add(thing[key].ToString(), thing);
+                    var key = thing[keyName].ToString();
+                    if (!dict.ContainsKey(key))
+                    {
+                        thing["lat"] = lat;
+                        thing["lon"] = lon;
+                        dict.Add(key, thing);
+                    }
                 }
             }
         }

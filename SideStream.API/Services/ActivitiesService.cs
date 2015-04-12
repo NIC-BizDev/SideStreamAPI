@@ -48,19 +48,44 @@ namespace SideStream.API.Services
                     Longitude = Convert.ToDouble(activity["lon"].ToString()),
                     Properties = new Dictionary<string,object>(),
                 };
-                newPoint.Properties.Add("details", activity);
+                //newPoint.Properties.Add("details", activity);
                 newPoint.AddTag("Activity");
                 var eventId = TryToConvert.ToInt(activity["EventID"]);
                 var tourId = TryToConvert.ToInt(activity["TourID"]);
                 if (eventId.HasValue)
                 {
+                    newPoint.Id = "E" + eventId.Value.ToString();
                     newPoint.Title = activity["EventName"].ToString();
-                    newPoint.Id = eventId.Value.ToString();
+
+                    newPoint.AddTag("Event");
+
+                    var startDate = activity["EventStartDate"].ToString();
+                    var endDate = activity["EventEndDate"].ToString();
+                    if (startDate == endDate)
+                    {
+                        newPoint.Properties.Add("Date", startDate);
+                    }
+                    else
+                    {
+                        newPoint.Properties.Add("Start Date", startDate);
+                        newPoint.Properties.Add("End Date", endDate);
+                    }
+                    newPoint.Properties.Add("Description", activity["EventDescription"].ToString());
                 }
                 else if (tourId.HasValue)
                 {
+                    newPoint.Id = "T" + tourId.Value.ToString();
                     newPoint.Title = activity["TourName"].ToString();
-                    newPoint.Id = tourId.Value.ToString();
+
+                    newPoint.AddTag("Tour");
+
+                    newPoint.Properties.Add("Description", activity["TourDescription"].ToString());
+                    newPoint.Properties.Add("Duration", activity["TourDuration"].ToString());
+                    newPoint.Properties.Add("Type", activity["TourType"].ToString());
+                    foreach (var attr in activity["ATTRIBUTES"].Children().ToList())
+                    {
+                        newPoint.Properties.Add(attr["AttributeName"].ToString(), attr["AttributeValue"].ToString());
+                    }
                 }
                 else
                 {

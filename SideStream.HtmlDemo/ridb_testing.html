@@ -30,6 +30,7 @@
                 }
             };
             $('#request').html("REQUEST: " + JSON.stringify(ajaxParams, null, 2));
+            $('#output').html('');
             $.ajax(ajaxParams);
         };
 

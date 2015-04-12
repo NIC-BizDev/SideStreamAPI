@@ -122,7 +122,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\MashupDataSource.cs" />
     <Compile Include="Common\Util.cs" />
-    <Compile Include="Controllers\ActivitiesController.cs" />
     <Compile Include="Controllers\MapsController.cs" />
     <Compile Include="GeoJson\JsonWriterExtensions.cs" />
     <Compile Include="GeoJson\MapLayersResult.cs" />

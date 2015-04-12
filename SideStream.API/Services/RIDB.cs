@@ -80,7 +80,8 @@ namespace SideStream.API.Services
                     //offset is zero based, and we've already got the first one.
                     for (int i = 1; i < pageCount; i++)
                     {
-                        parameters["offset"] = i.ToString();
+                        var offset = i * limit;
+                        parameters["offset"] = offset.ToString();
                         var pageResultObject = GetRIDBPage(parameters, pieces);
                         retvalParts.AddRange(pageResultObject["RECDATA"].Children());
                     }
