@@ -12,22 +12,23 @@ $(function(){
 			console.log(tips);
 
 			tips.forEach(function (tip, i) {
-				$('#tips').append(
-						'<div class="row">'+
-						    '<div class="large-24 columns">'+
-						        '<div class="panel">'+
+				var stars = Math.floor(Math.random() * 5) + 1;
 
-						            '<i class="step fi-heart size-21"></i>'+
-						            '<i class="step fi-heart size-21"></i>'+
-						            '<i class="step fi-heart size-21"></i>'+
-						            '<i class="step fi-heart size-21"></i>'+
-						            '<i class="step fi-heart size-21"></i>'+
-						            '<div>'+
-						                tip.description+
-						            '</div>'+
-						        '</div>'+
-						    '</div>'
-				);
+				var str = '<div class="row">'+
+						    '<div class="large-24 columns">'+
+						        '<div class="panel">';
+
+				for(var i = 0; i < stars; i++ ){
+					str = str + '<i class="step fi-heart size-21"></i>';	
+				}
+				
+			            str = str + '<div>'+
+			                tip.description+
+			            '</div>'+
+			        '</div>'+
+			    '</div>';
+
+				$('#tips').append(str);
 			});
 		});
 	});
@@ -36,11 +37,6 @@ $(function(){
 	$('#postTip').click(function(event) {
 		var id = $("#ridbID").val();
 		var tip = $("#userTip").val();
-
-		// $.post('http://ridb-tips.elasticbeanstalk.com/tour/tip', { 
-		//   		"ridbId": id, 
-		//   		"description": tip
-		//   }, "json");
 		
 		$.ajax({
 		  type: "POST",
