@@ -24,5 +24,6 @@ namespace SideStream.API.GeoJson
         public int Page { get; set; }
         public int PageCount { get; set; }
         public IList<Point> Points { get; set; }
+        public int PageSize { get; set; }
     }
 }

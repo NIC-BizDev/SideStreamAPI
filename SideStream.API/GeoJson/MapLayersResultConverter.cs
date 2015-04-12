@@ -24,13 +24,23 @@ namespace SideStream.API.GeoJson
             SortedDictionary<string, int> tagCount = new SortedDictionary<string, int>();
             MapLayersResult result = value as MapLayersResult;
 
+            int remainingRecords = 0;
+
             writer.WriteStartObject();
+
+
 
             // Layers
             writer.WritePropertyName("layers");
             writer.WriteStartArray();
             foreach (PointLayer layer in result.PointLayers)
             {
+                remainingRecords += (layer.TotalResults - layer.Points.Count);
+                if(layer.Page > 1)
+                {
+                    remainingRecords -= (layer.PageSize * (layer.Page - 1));
+                }
+
                 writer.WriteStartObject();
 
                 writer.WritePropertyName("type");
@@ -54,6 +64,9 @@ namespace SideStream.API.GeoJson
                 writer.WriteEndObject();
             }
             writer.WriteEndArray();
+
+            writer.WritePropertyName("remainingRecords");
+            writer.WriteValue(remainingRecords);
 
             // Tags
             writer.WritePropertyName("tags");
