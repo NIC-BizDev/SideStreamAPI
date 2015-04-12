@@ -93,10 +93,12 @@ namespace SideStream.API.Services
         public static JObject GetRIDBPage(IDictionary<string, string> parameters, params string[] pieces)
         {
             var url = GetRidbUrl(pieces, parameters);
-            var client = new WebClient();
-            client.Headers.Add("apikey", _ridbApiKey);
-            var result = client.DownloadString(url);
-            return JObject.Parse(result);
+            using (var client = new WebClient())
+            {
+                client.Headers.Add("apikey", _ridbApiKey);
+                var result = client.DownloadString(url);
+                return JObject.Parse(result);
+            }
         }
 
         public static string addParamsToUrl(string baseUrl, IDictionary<string, string> parameters)
