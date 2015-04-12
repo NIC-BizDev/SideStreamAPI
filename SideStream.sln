@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SideStream.HtmlDemo", "Side
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SideStream.MvcDemo", "SideStream.MvcDemo\SideStream.MvcDemo.csproj", "{7147142D-F12C-4098-A06C-24B5FB7DCEDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SideStream.Root", "SideStream.Root\SideStream.Root.csproj", "{81284FD7-5A16-4859-9F1A-811CC8625205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7147142D-F12C-4098-A06C-24B5FB7DCEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7147142D-F12C-4098-A06C-24B5FB7DCEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7147142D-F12C-4098-A06C-24B5FB7DCEDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81284FD7-5A16-4859-9F1A-811CC8625205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81284FD7-5A16-4859-9F1A-811CC8625205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81284FD7-5A16-4859-9F1A-811CC8625205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81284FD7-5A16-4859-9F1A-811CC8625205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

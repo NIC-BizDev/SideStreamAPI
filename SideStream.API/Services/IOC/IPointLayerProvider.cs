@@ -10,6 +10,6 @@ namespace SideStream.API.Services.IOC
     public interface IPointLayerProvider
     {
         MashupDataSource DataSource { get; }
-        PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1);
+        PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1, string[] ds = null, string[] tags = null);
     }
 }

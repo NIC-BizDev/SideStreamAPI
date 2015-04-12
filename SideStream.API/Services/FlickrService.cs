@@ -28,7 +28,7 @@ namespace SideStream.API.Services
             }
         }
 
-        public PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1)
+        public PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1, string[] ds = null, string[] tags = null)
         {
 
             PhotoSearchOptions searchOptions = new PhotoSearchOptions();
@@ -63,6 +63,9 @@ namespace SideStream.API.Services
             }
 
             searchOptions.BoundaryBox = bndry;
+
+            if (!(tags == null || tags.Length < 1))
+                searchOptions.Tags =  string.Join(",",tags);
 
             searchOptions.Accuracy = GeoAccuracy.Street;
 
@@ -124,5 +127,6 @@ namespace SideStream.API.Services
 
             return points;
         }
+
     }
 }

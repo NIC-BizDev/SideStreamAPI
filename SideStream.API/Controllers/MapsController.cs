@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace SideStream.API.Controllers
 {
     [RoutePrefix("maps")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MapsController : ApiController
     {
         private readonly IPointLayerProvider[] pointLayerServices;
@@ -21,8 +23,9 @@ namespace SideStream.API.Controllers
 
         [HttpGet]
         [Route("layers/get", Name = "GetMapLayers")]
-        public MapLayersResult GetLayers(double neLat, double neLng, double swLat, double swLng)
+        public MapLayersResult GetLayers(double neLat, double neLng, double swLat, double swLng, int page = 1, [FromUri] string[] ds = null, [FromUri] string[] tags = null)
         {
+            //string[] ds = null, string[] tags = null
             // ToDo: Need to add in page number and layer flags to the signature
             // might even want to add a properties collection to pass unknown get params to the providers, that would allow more flexibility later
 
@@ -30,9 +33,6 @@ namespace SideStream.API.Controllers
 
             foreach (IPointLayerProvider pointLayerService in pointLayerServices)
             {
-                // ToDo: add in layer filter 
-
-                int page = 1;   // ToDo: Replace with request data
 
                 if(page > 0)
                 {

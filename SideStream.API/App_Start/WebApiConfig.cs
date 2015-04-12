@@ -10,6 +10,8 @@ namespace SideStream.API
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+
             // Web API configuration and services
             foreach (MediaTypeFormatter f in GlobalConfiguration.Configuration.Formatters)
             {
