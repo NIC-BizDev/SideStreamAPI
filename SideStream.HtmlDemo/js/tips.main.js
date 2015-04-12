@@ -30,6 +30,26 @@ $(function(){
 				);
 			});
 		});
-	})
+	});
+
+
+	$('#postTip').click(function(event) {
+		var id = $("#ridbID").val();
+		var tip = $("#userTip").val();
+
+		$.ajax({
+		  type: "POST",
+		  url: 'http://ridb-tips.elasticbeanstalk.com/tour/tip',
+		  dataType : "json",
+		  contentType: "application/json",
+		  data: { 
+		  		ridbId: id, 
+		  		description: tip
+		  },
+		  success: function (res) {
+		  	console.log(res);
+		  }
+		});
+	});
 	
 });
