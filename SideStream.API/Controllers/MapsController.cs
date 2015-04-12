@@ -36,7 +36,7 @@ namespace SideStream.API.Controllers
 
                 if(page > 0)
                 {
-                    result.AddLayer(pointLayerService.GetPointLayerByBounds(neLat, neLng, swLat, swLng, page));
+                    result.AddLayer(pointLayerService.GetPointLayerByBounds(neLat, neLng, swLat, swLng, page,ds,tags));
                 }
 
             }

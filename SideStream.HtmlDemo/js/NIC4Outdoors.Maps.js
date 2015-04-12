@@ -66,8 +66,16 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             tags: tags.selectedTags
         }
 
-        var promise = $.getJSON(apiMethod,getData); 
-        promise.then(function (data) { loadLayers(data, clear); });
+        //var promise = $.getJSON(apiMethod,getData);
+        //promise.then(function (data) { loadLayers(data, clear); });
+
+        $.ajax({
+            url: apiMethod,
+            data: getData,
+            traditional: true,
+            success: function (data) { loadLayers(data, clear); }
+        });
+
 
         removeUnshownMarkers();
     };
@@ -189,7 +197,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         // console.log(jsonLayer.data.features);
 
         // Build tags variable and get count
-        tags.length = 0;
+        tags = [];
         $.each(jsonLayer.data.features,function(index,value){
 
             var dataTags = value.properties.tags;
@@ -259,7 +267,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
 
     function getCloseMarkers(feature)
     {
-        closeMarkers.length = 0;
+        closeMarkers = [];
         closeMarkers.push({distance:0,feature:feature});
 
         $.each(layers, function (ds, layer) {
