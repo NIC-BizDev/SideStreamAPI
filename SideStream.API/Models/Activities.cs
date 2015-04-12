@@ -38,14 +38,18 @@ namespace SideStream.API.Models
 
         private void LoadActivitiesFromRIDB(string lat, string lon, string radius)
         {
-            foreach (var recArea in JObject.Parse(RIDB.GetRecAreas(lat, lon, radius)).Children().ToList())
+            var recAreas = RIDB.GetRecAreas(lat, lon, radius);
+            var recAreaJObject = JArray.Parse(recAreas);
+            var recAreaChildren = recAreaJObject.Children<JObject>();
+            foreach (var recArea in recAreaChildren.ToList())
             {
                 var id = recArea["RecAreaID"].ToString();
                 var recLat = recArea["RecAreaLatitude"].ToString();
                 var recLon = recArea["RecAreaLongitude"].ToString();
                 AddActivitiesUnlessThere(Events, RIDB.GetRecAreaEvents(id), "EventID", recLat, recLon);
             }
-            foreach (var facility in JObject.Parse(RIDB.GetFacilities(lat, lon, radius)).Children().ToList())
+            var facilities = RIDB.GetFacilities(lat, lon, radius);
+            foreach (var facility in JObject.Parse(facilities).Children().ToList())
             {
                 var id = facility["FacilityID"].ToString();
                 var facLat = facility["FacilityLatitude"].ToString();
@@ -57,7 +61,8 @@ namespace SideStream.API.Models
 
         private static void AddActivitiesUnlessThere(Dictionary<string, JToken> dict, string json, string key, string lat, string lon) 
         {
-            foreach (var thing in JObject.Parse(json).Children().ToList())
+            var things = JArray.Parse(json);
+            foreach (var thing in things.Children<JObject>().ToList())
             {
                 if (!dict.ContainsKey(key))
                 {

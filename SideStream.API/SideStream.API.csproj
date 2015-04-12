@@ -128,6 +128,7 @@
     <Compile Include="Services\FlickrService.cs" />
     <Compile Include="Services\IOC\IPointLayerProvider.cs" />
     <Compile Include="Services\RIDB.cs" />
+    <Compile Include="Services\TryToConvert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

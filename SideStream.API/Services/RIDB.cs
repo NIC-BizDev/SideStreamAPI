@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -60,24 +62,58 @@ namespace SideStream.API.Services
 
         public static string CallRIDB(params string[] pieces)
         {
-            return CallRIDB(pieces);
+            return CallRIDB(new Dictionary<string, string>(), pieces);
         }
         public static string CallRIDB(IDictionary<string, string> parameters, params string[] pieces)
         {
-            var url = GetRidbUrl(parameters, pieces);
+            var resultObject = GetRIDBPage(parameters, pieces);
+            var retvalParts = new List<JToken>();
+            retvalParts.AddRange(resultObject["RECDATA"].Children());
+            if (!parameters.ContainsKey("offset"))
+            {
+                var totalCount = TryToConvert.ToInt(resultObject["METADATA"]["RESULTS"]["TOTAL_COUNT"]);
+                var currentCount = TryToConvert.ToInt(resultObject["METADATA"]["RESULTS"]["CURRENT_COUNT"]);
+                if (currentCount < totalCount)
+                {
+                    var limit = TryToConvert.ToInt(resultObject["METADATA"]["RESULTS"]["LIMIT"]) ?? 50;
+                    var pageCount = totalCount / limit + (totalCount % limit > 0 ? 1 : 0);
+                    //offset is zero based, and we've already got the first one.
+                    for (int i = 1; i < pageCount; i++)
+                    {
+                        parameters["offset"] = i.ToString();
+                        var pageResultObject = GetRIDBPage(parameters, pieces);
+                        retvalParts.AddRange(pageResultObject["RECDATA"].Children());
+                    }
+                }
+            }
+            return JsonConvert.SerializeObject(retvalParts);
+        }
+
+        public static JObject GetRIDBPage(IDictionary<string, string> parameters, params string[] pieces)
+        {
+            var url = GetRidbUrl(pieces, parameters);
             var client = new WebClient();
             client.Headers.Add("apikey", _ridbApiKey);
-            return client.DownloadString(url);
+            var result = client.DownloadString(url);
+            return JObject.Parse(result);
         }
 
-        public static string GetRidbUrl(IDictionary<string, string> parameters, params string[] pieces)
+        public static string addParamsToUrl(string baseUrl, IDictionary<string, string> parameters)
         {
-            var call = GetRidbBase(pieces);
-            var call_params = createParamsString(parameters);
-            return call + (String.IsNullOrEmpty(call_params) ? "" : "&" + call_params);
+            return addParamStringToUrl(baseUrl, createParamsString(parameters));
         }
 
-        public static string GetRidbBase(params string[] pieces)
+        public static string GetRidbUrl(string[] pieces, IDictionary<string, string> parameters)
+        {
+            return addParamStringToUrl(GetRidbBaseUrl(pieces), createParamsString(parameters));
+        }
+
+        public static string addParamStringToUrl(string baseUrl, string paramString)
+        {
+            return baseUrl + (String.IsNullOrEmpty(paramString) ? "" : "?" + paramString);
+        }
+
+        public static string GetRidbBaseUrl(params string[] pieces)
         {
             return String.Format("https://{0}/{1}/{2}", _ridbBaseurl, _ridbVersion, String.Join("/", pieces));
         }
@@ -87,7 +123,7 @@ namespace SideStream.API.Services
             var parts = new List<string>();
             foreach (var key in parameters.Keys)
             {
-                parts.Add(key + "&" + parameters[key]);
+                parts.Add(key + "=" + parameters[key]);
             }
             return String.Join("&", parts);
         }

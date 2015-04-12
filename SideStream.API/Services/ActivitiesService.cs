@@ -50,8 +50,8 @@ namespace SideStream.API.Services
                 };
                 newPoint.Properties.Add("details", activity);
                 newPoint.AddTag("Activity");
-                var eventId = TryToConvertToInt(activity["EventID"]);
-                var tourId = TryToConvertToInt(activity["TourID"]);
+                var eventId = TryToConvert.ToInt(activity["EventID"]);
+                var tourId = TryToConvert.ToInt(activity["TourID"]);
                 if (eventId.HasValue)
                 {
                     newPoint.Title = activity["EventName"].ToString();
@@ -76,25 +76,5 @@ namespace SideStream.API.Services
             return retval;
         }
 
-        private int? TryToConvertToInt(object value)
-        {
-            int? retval = null;
-            if (value != null)
-            {
-                var str = value.ToString();
-                if (!String.IsNullOrWhiteSpace(str))
-                {
-                    try 
-                    {
-                        retval = Convert.ToInt32(str);
-                    }
-                    catch
-                    {
-                        retval = null;
-                    }
-                }
-            }
-            return retval;
-        }
     }
 }

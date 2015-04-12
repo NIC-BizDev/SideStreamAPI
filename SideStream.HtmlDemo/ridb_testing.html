@@ -5,45 +5,37 @@
     <script src="js/jquery-2.1.3.min.js"></script>
 </head>
 <body>
-    https://ridb.recreation.gov/api/v1/
+    <input type="text" id="base" style="width: 200px;" value="https://ridb.recreation.gov/api/v1/" />
     <input type="text" id="call" style="width: 200px;" value="recareas" />
     <input type="text" id="params" style="width: 400px;" value="latitude=48.5&longitude=-113.8&radius=50" />
     <button type="button" id="go">Go</button>
-
-    <div id="output" style="font-family: monospace; white-space: pre;">
-    </div>
+    <div id="request" style="font-family: monospace; white-space: pre;"></div>
+    <div id="output" style="font-family: monospace; white-space: pre;"></div>
 
     <script type="text/javascript">
-        var callRIDB = function (call, callParams) {
+        var callRIDB = function (base, call, callParams) {
             if (callParams != '') {
                 callParams = '?' + callParams;
             }
             var ajaxParams = {
                 type: 'GET',
-                url: 'https://ridb.recreation.gov/api/v1/' + call + callParams,
+                url: base + call + callParams,
                 dataType: 'json',
                 headers: { 'apikey': '7DBC8061F49F4E93BA51A9FC57BA9224' },
                 success: function (data, textStatus, jqXHR) {
-                    $('#output').append(
-                        '\r\n' +
-                        JSON.stringify(data, null, 2)
-                    );
+                    $('#output').html("RESPONSE: " + JSON.stringify(data, null, 2));
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    $('#output').append(
-                        '\r\n' +
-                        'error: ' + errorThrown + ' -> ' + textStatus +
-                        '\r\n' + JSON.stringify(jqXHR, null, 2)
-                    );
+                    $('#output').html("ERROR: " + JSON.stringify(jqXHR, null, 2));
                 }
             };
-            $('#output').html(JSON.stringify(ajaxParams));
+            $('#request').html("REQUEST: " + JSON.stringify(ajaxParams, null, 2));
             $.ajax(ajaxParams);
         };
 
         $(document).ready(function () {
             $('#go').click(function () {
-                callRIDB($('#call').val(), $('#params').val());
+                callRIDB($('#base').val(), $('#call').val(), $('#params').val());
             });
         });
     </script>
