@@ -67,5 +67,11 @@ namespace SideStream.API.GeoJson
             foreach (string tag in tagCollection)
                 this.AddTag(tag);
         }
+
+        public void AddTags(IList<string> tagCollection)
+        {
+            foreach (string tag in tagCollection)
+                this.AddTag(tag);
+        }
     }
 }

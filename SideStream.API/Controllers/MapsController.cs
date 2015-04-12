@@ -34,7 +34,7 @@ namespace SideStream.API.Controllers
             foreach (IPointLayerProvider pointLayerService in pointLayerServices)
             {
 
-                if(page > 0)
+                if (page > 0 && ds.Contains(pointLayerService.DataSource.ToString()))
                 {
                     result.AddLayer(pointLayerService.GetPointLayerByBounds(neLat, neLng, swLat, swLng, page,ds,tags));
                 }
