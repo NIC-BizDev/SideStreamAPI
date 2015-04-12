@@ -17,7 +17,7 @@ namespace SideStream.API.Services
             get { return MashupDataSource.RIDB; }
         }
 
-        public PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1)
+        public PointLayer GetPointLayerByBounds(double neLat, double neLng, double swLat, double swLng, int page = 1, string[] ds = null, string[] tags = null)
         {
             var latCenter = (neLat + swLat) / 2;
             var lonCenter = (neLng + swLng) / 2;
