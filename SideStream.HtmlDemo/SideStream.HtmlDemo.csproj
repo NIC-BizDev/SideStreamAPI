@@ -69,6 +69,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="ridb_testing.html" />
     <Content Include="Sandbox.html.infoWindow" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
