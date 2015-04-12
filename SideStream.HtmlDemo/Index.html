@@ -42,6 +42,7 @@
             <h2>Tags</h2>
             <ul id="tags">
             </ul>
+            <!-- <a href="#" id="clear-tags">Clear All Tags</a> -->
         </div>
     </div>
 
@@ -162,8 +163,7 @@
                 <span class="title icon-yelp" data-bind="text: title"></span>
                 <div class="row">
                     <div class="large-8 medium-10 columns">
-                        <img data-bind="attr:{src: thumbnail}" /><br>
-                        <small>Something?</small>
+                        <img data-bind="attr:{src: thumbnail}" />
                     </div>
                     <div class="large-16 medium-14 columns description" data-bind="html: desc"></div>
                 </div>
@@ -195,8 +195,8 @@
                             </div>
                             <div class="large-12 medium-12 columns">
                                 <div class="maps-details-desc">
-                                    <p class="text-center">
-                                        <b><span data-bind="text: title"></span></b>
+                                    <p>
+                                        <b><span data-bind="text: title" class="title icon-flickr"></span></b>
                                     </p>
                                     <p>
                                         <span class="small-caps">By: </span> <span data-bind="text: owner"></span>
@@ -240,14 +240,14 @@
                             </div>
                             <div class="large-12 medium-12 columns">
                                 <div class="maps-details-desc">
-                                    <p class="text-center">
-                                        <b><span data-bind="text: title"></span></b>
+                                    <p>
+                                        <b><span data-bind="text: title" class="title icon-yelp"></span></b>
                                     </p>
                                     <p>
-                                        <span class="small-caps">By: </span> Rating?</span>
+                                        <img data-bind="attr:{src: ratingImgUrl}" />
                                     </p>
                                     <p>
-                                        <span class="small-caps">Taken: </span> Date?</span>
+                                        <span class="small-caps">Phone: </span><span data-bind="html: phone"></span>
                                     </p>
                                     <p>
                                         <span class="small-caps">Description: </span>
@@ -279,8 +279,8 @@
         <script type="text/javascript">
 
             // ----- Settings -----
-            NIC4Outdoors.apiPath = 'http://nic4outdoors.azurewebsites.net/sidestream/api/';
-            // NIC4Outdoors.apiPath = '../api/';
+            // NIC4Outdoors.apiPath = 'http://nic4outdoors.azurewebsites.net/sidestream/api/';
+            NIC4Outdoors.apiPath = '../api/';
             var mapRefreshDelay = 500; // in ms
 
             // ----- Objects -----

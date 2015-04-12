@@ -70,6 +70,7 @@ namespace SideStream.API.Services
             GeneralOptions generalOptions = new GeneralOptions();
             //generalOptions.radius_filter = vLocation.Radius;
             generalOptions.limit = pageSize;
+            
 
             if(page > 1)
             {
@@ -85,6 +86,7 @@ namespace SideStream.API.Services
             layer.Page = page;
             layer.PageCount = layer.TotalResults % pageSize;
             layer.Points = PointsFromBusinessList(results.businesses);
+            layer.PageSize = pageSize;
 
             return layer;
 
@@ -108,7 +110,7 @@ namespace SideStream.API.Services
                 // point.Properties.Add("likes", b.);
                 point.Properties.Add("thumbnail", b.snippet_image_url);
                 //point.Properties.Add("thumbnail", p.SquareThumbnailUrl);
-                point.Properties.Add("image", b.image_url);
+                point.Properties.Add("image", b.image_url.Replace("ms.","o."));
                 point.Properties.Add("rating", b.rating);
                 point.Properties.Add("ratingImgUrl", b.rating_img_url);
                 point.Properties.Add("reviewCount",b.review_count);

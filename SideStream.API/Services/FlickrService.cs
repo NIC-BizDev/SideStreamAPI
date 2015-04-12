@@ -10,6 +10,8 @@ namespace SideStream.API.Services
 {
     public class FlickrService : IOC.IPointLayerProvider
     {
+        int pageSize = 50;
+
         public MashupDataSource DataSource
         {
             get { return MashupDataSource.Flickr; }
@@ -74,7 +76,7 @@ namespace SideStream.API.Services
 
             searchOptions.Accuracy = GeoAccuracy.Street;
 
-            searchOptions.PerPage = 50;
+            searchOptions.PerPage = pageSize;
             searchOptions.SortOrder = PhotoSearchSortOrder.InterestingnessDescending;
 
             searchOptions.Extras |= PhotoSearchExtras.Geo;
@@ -95,6 +97,7 @@ namespace SideStream.API.Services
             result.Page = flickrPhotos.Page;
             result.PageCount = flickrPhotos.Pages;
             result.Points = PointsFromPhotoCollection(flickrPhotos);
+            result.PageSize = pageSize;
 
             return result;
         }

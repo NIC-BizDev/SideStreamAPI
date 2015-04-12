@@ -72,8 +72,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="images\FlickrPin.png" />
     <Content Include="images\NIC4Outdoors-SideStream.png" />
     <Content Include="images\NIC4Outdoors.png" />
+    <Content Include="images\RIDBPin.png" />
+    <Content Include="images\YelpPin.png" />
     <Content Include="js\foundation.min.js" />
     <Content Include="js\foundation\foundation.abide.js" />
     <Content Include="js\foundation\foundation.accordion.js" />

@@ -18,6 +18,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         content: ""
     });
     
+    var remainingRecords = 0;
+    var displayedRecords = 0;
 
     var getContent;
     var infoBox = new InfoBox({
@@ -83,7 +85,6 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             page: currentPage,
             tags: selectedTags
         }
-        console.log(selectedTags);
 
         //var promise = $.getJSON(apiMethod,getData);
         //promise.then(function (data) { loadLayers(data, clear); });
@@ -104,6 +105,12 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         infoBox.close();
     };
 
+    this.getMarkerShowing = function () {
+        return displayedRecords;
+    };
+    this.getMarkerTotal = function () {
+        return (remainingRecords + displayedRecords);
+    };
 
     this.getMarkerCount = function()
     {
@@ -162,6 +169,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             loadLayer(value,clear);
         });
 
+        remainingRecords = data.remainingRecords;
+
         indexTags();
 
     }
@@ -169,13 +178,16 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     function indexTags()
     {
         tags = [];
+
+        displayedRecords = 0;
+        
         $.each(layers, function (ds, layer) {
-            console.log($.inArray(layer.ds,selectedFilters), layer.ds, selectedFilters);
             if (layer.type == 'PointLayer' && $.inArray(layer.ds,selectedFilters) >= 0) {
-                console.log(layer.ds);
                 layer.mapLayer.forEach(function (feature) {
 
                     var dataTags = feature.getProperty('tags');
+
+                    displayedRecords++;
 
                         // Build count for each tag
                         $.each(dataTags, function (index, value) {
@@ -193,9 +205,7 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             if (tags.hasOwnProperty(name)) {
                 var count = tags[name];
                 var active = '';
-                // console.log($.inArray(name,selectedTags), selectedTags, name);
                 if ($.inArray(name, selectedTags) >= 0) active = 'class="active"';
-                // console.log(selectedTags);
                 if (count > 0) tagsList.append('<li data-tag="' + name + '"' + active + '>' + name + ' <span class="count">' + count + '</span></li>');
             }
         }
@@ -218,25 +228,15 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             layers[jsonLayer.ds] = layer;
         }
 
-        // $.each(jsonLayer.data.features, function(index,value) {
-        //     // console.log(layer.mapLayer);
-        //     if(layer.mapLayer.getFeatureById(value.id)) {
-                
-        //     }
-        // })
 
         var filteredData = $.grep(jsonLayer.data.features, function(value,index){
-            // console.log(layer.mapLayer.getFeatureById(value.id) == true);
             if(layer.mapLayer.getFeatureById(value.id)) {
-                // console.log('true');
                 return false;
             }
             else {
-                 // console.log('false');
                 return true;
             }
         });
-        // console.log(filteredData)
         jsonLayer.data.features = filteredData;
 
         layer.count = jsonLayer.cnt;
@@ -371,7 +371,6 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         var id = $(this).data('layer');
 
         layer = layers[id];
-        console.log(id);
 
         $(this).toggleClass('active');
 
@@ -417,12 +416,12 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             selectedTags.push($(this).attr('data-tag'));
         });
 
+        layerManager.closeInfoWindow();
         that.refreshLayers();
 
         $.each(layers, function (ds, layer) {
             if (layer.type == 'PointLayer') {
                 layer.mapLayer.forEach(function (feature) {
-                    // console.log(feature);
                     if ($.inArray(tagName,feature.k.tags) < 0) {
                         layer.mapLayer.remove(feature);
                     }
