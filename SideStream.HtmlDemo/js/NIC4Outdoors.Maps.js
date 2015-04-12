@@ -248,6 +248,11 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
 
         layer.mapLayer.addGeoJson(jsonLayer.data);
 
+        layer.mapLayer.setStyle({
+            icon: 'Images/' + jsonLayer.ds + 'Pin.png',
+        });
+
+
 
 
         tagsList.html('');
