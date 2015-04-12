@@ -37,15 +37,20 @@ $(function(){
 		var id = $("#ridbID").val();
 		var tip = $("#userTip").val();
 
+		// $.post('http://ridb-tips.elasticbeanstalk.com/tour/tip', { 
+		//   		"ridbId": id, 
+		//   		"description": tip
+		//   }, "json");
+		
 		$.ajax({
 		  type: "POST",
 		  url: 'http://ridb-tips.elasticbeanstalk.com/tour/tip',
 		  dataType : "json",
 		  contentType: "application/json",
-		  data: { 
-		  		ridbId: id, 
-		  		description: tip
-		  },
+		  data: JSON.stringify({ 
+		  		"ridbId": id, 
+		  		"description": tip
+		  }),
 		  success: function (res) {
 		  	console.log(res);
 		  }
