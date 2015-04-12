@@ -10,12 +10,16 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     
     // ----- Members -----
     var map = googleMap;
+    var that = this;
     var layers = {}; // Hashmap of NIC4Outdoors.Maps.Layer
     var layer;
     var infoWindow = new google.maps.InfoWindow({
         pixelOffset: new google.maps.Size(0, 0),
         content: ""
     });
+    var tags = [];
+    tags.selectedTags = [];
+
     var getContent;
     var infoBox = new InfoBox({
         content: '',
@@ -35,6 +39,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     var closeMarkers = [];
     var closeMarkersIndex = -1;
     var closeMarkersPixelRadius = 40;
+
+    var tagsList = $('#tags');
 
 
     // ----- Public Methods -----
@@ -56,7 +62,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             neLat: neLatLng.lat(),
             neLng: neLatLng.lng(),
             swLat: swLatLng.lat(),
-            swLng: swLatLng.lng()
+            swLng: swLatLng.lng(),
+            tags: tags.selectedTags
         }
 
         var promise = $.getJSON(apiMethod,getData); 
@@ -124,12 +131,15 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         // layers: [{type,ds,cnt,pg,pgCnt,data}]
         // tags: [{tag,cnt}] <<- Maybe remove  
 
-        $.each(data.layers,function(index,value){loadLayer(value,clear);});
+        $.each(data.layers,function(index,value){
+            loadLayer(value,clear);
+        });
 
     }
 
     function loadLayer(jsonLayer,clear)
     {
+
         // Existing Layer
         layer = layers[jsonLayer.ds];
 
@@ -142,16 +152,71 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             layers[jsonLayer.ds] = layer;
         }
 
+        // $.each(jsonLayer.data.features, function(index,value) {
+        //     // console.log(layer.mapLayer);
+        //     if(layer.mapLayer.getFeatureById(value.id)) {
+                
+        //     }
+        // })
+
+        var filteredData = $.grep(jsonLayer.data.features, function(value,index){
+            // console.log(layer.mapLayer.getFeatureById(value.id) == true);
+            if(layer.mapLayer.getFeatureById(value.id)) {
+                console.log('true');
+                return false;
+            }
+            else {
+                 console.log('false');
+                return true;
+            }
+        });
+        jsonLayer.data.features = filteredData;
+
         layer.count = jsonLayer.cnt;
         layer.page = jsonLayer.pg;
         layer.pages = jsonLayer.pgCnt;
+
+        console.log(layer);
 
         if(clear)
             layer.clear();
 
         layer.mapLayer.addGeoJson(jsonLayer.data);
 
+
+
+        tagsList.html('');
+        // console.log(jsonLayer.data.features);
+
+        // Build tags variable and get count
+        tags.length = 0;
+        $.each(jsonLayer.data.features,function(index,value){
+
+            var dataTags = value.properties.tags;
+
+            // Build count for each tag
+            $.each(dataTags,function(index,value){
+                if(!tags[value] && tags[value] != 0) tags[value] = 1;
+                else tags[value] += 1;
+            })
+
+        })
+
+        // Display the tags
+        for (var name in tags) {
+          if (tags.hasOwnProperty(name)) {
+            var count = tags[name];
+            if(count > 0) tagsList.append('<li data-tag="'+name+'">'+name+' <span class="count">'+count+'</span></li>');
+          }
+        }
+
+        console.log(tags);
+
+
     }
+
+
+    
 
     function removeUnshownMarkers()
     {
@@ -227,15 +292,50 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     // Filters
     ////////////////////////////////////////////////////////////////////////////////    
     $('[data-layer]').click(function(){
+
         var id = $(this).data('layer');
         $(this).toggleClass('active');
-        if($(this).hasClass('active')) layer.mapLayer.setMap(map);
+
+        if($(this).hasClass('active')) {
+            layer.mapLayer.setMap(map);
+        }
         else {
             layer.mapLayer.setMap(null);
             layerManager.closeInfoWindow();
         }
+
+        console.log(map);
         return false;
+
     });
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Tag Filtering
+    ////////////////////////////////////////////////////////////////////////////////  
+    tagsList.on('click','li',function(){
+
+        var tagName = $(this).attr('data-tag');
+        $(this).toggleClass('active');
+
+        tags.selectedTags = [];
+        tagsList.find('.active').each(function(){
+            tags.selectedTags.push($(this).attr('data-tag'));
+        })
+
+        that.refreshLayers();
+
+        $.each(layers, function (ds, layer) {
+            if (layer.type == 'PointLayer') {
+                layer.mapLayer.forEach(function (feature) {
+                    // console.log(feature);
+                    if ($.inArray(tagName,feature.k.tags) < 0) {
+                        layer.mapLayer.remove(feature);
+                    }
+                });
+            }
+        });
+        
+    })
 
 
   
@@ -291,4 +391,8 @@ $(function () {
     };
 
 });
+
+
+
+
 
