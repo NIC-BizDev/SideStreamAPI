@@ -211,6 +211,12 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         }
         tagsList.find('.active').prependTo(tagsList);
 
+        $('#count-displayed').text(displayedRecords);
+        $('#count-total').text(remainingRecords);
+
+        if(displayedRecords > 0) $('#count').addClass('active');
+        else $('#count').removeClass('active');
+
     }
 
     function loadLayer(jsonLayer,clear)
@@ -404,19 +410,23 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     ////////////////////////////////////////////////////////////////////////////////
     // Tag Filtering
     ////////////////////////////////////////////////////////////////////////////////  
+    function getSelectedTags(){
+        selectedTags = [];
+        tagsList.find('.active').each(function(){
+            selectedTags.push($(this).attr('data-tag'));
+        });
+    }
+
     tagsList.on('click','li',function(){
 
         var tagName = $(this).attr('data-tag');
         $(this).toggleClass('active');
 
         // tags.selectedTags = [];
-        selectedTags = [];
-        tagsList.find('.active').each(function(){
-            // tags.selectedTags.push($(this).attr('data-tag'));
-            selectedTags.push($(this).attr('data-tag'));
-        });
+        getSelectedTags();
 
         layerManager.closeInfoWindow();
+        currentPage = 1;
         that.refreshLayers();
 
         $.each(layers, function (ds, layer) {
@@ -429,6 +439,16 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             }
         });
         
+    })
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Clear All Tags
+    ////////////////////////////////////////////////////////////////////////////////  
+    $('#clear-tags').click(function(){
+        getSelectedTags();
+        that.refreshLayers();
+        tagsList.find('.active').removeClass('active');
     })
 
 
