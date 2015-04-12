@@ -464,7 +464,7 @@ body.modal-active { overflow: hidden; }
 }
 .info-box:after { content: ''; position: absolute; border-style: solid; border-width: 10px 10px 0; border-color: #FFFFFF transparent; display: block; width: 0; z-index: 1; bottom: -10px; left: 66px; }
 .info-box .icon-cancel { position: absolute; top: 8px; right: 0; font-size: 0.625rem; }
-.info-box .row { margin: 0; }
+.info-box .row { margin: 0 10px; }
 .info-box img { max-width: 100% !important; width: auto; height: auto; }
 .info-box .inline-list { margin: 0; line-height: 1rem; }
 .info-box .inline-list > li { margin-right: 0; margin-left: 10px; float: none; display: inline-block; }
@@ -476,6 +476,11 @@ body.modal-active { overflow: hidden; }
 .info-box .footer [class*=icon]:before { font-size: 80%; margin: 0; }
 .info-box [class*=icon]:hover { color: #52A540; cursor: pointer; }
 
+.info-box .next, .info-box .prev { cursor: pointer; position: absolute; top: 50%; margin-top: -10px; background: #333; border-radius: 20px; padding: 3px; font-size: 0.675rem; height: 20px; width: 20px; z-index: 1000; }
+.info-box .prev { left: -10px; }
+.info-box .next { right: -10px; }
+.info-box .next:before, .info-box .prev:before { margin: 0; color: white; }
+.info-box .next:hover, .info-box .prev:hover { background: #52A540; }
 
 
 
