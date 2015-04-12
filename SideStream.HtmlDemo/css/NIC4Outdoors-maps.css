@@ -320,8 +320,10 @@
 
 
 /* -----------------------------------------
-   Icons
+   Icons/Fonts
 ----------------------------------------- */
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700);
+
 @font-face {
   font-family: 'nic4outdoors-icons';
   src: url('fonts/nic4outdoors-icons.eot?18319730');
@@ -366,23 +368,29 @@
 .icon-left-open:before { content: '\e80f'; } /* '' */
 .icon-heart:before { content: '\e810'; } /* '' */
 .icon-heart-empty:before { content: '\e811'; } /* '' */
+.icon-picture:before { content: '\e812'; } /* '' */
 
 
 /* -----------------------------------------
    General
 ----------------------------------------- */
-.block-list, .block-list li { margin: 0; padding: 0; list-style: none; }
+body { padding-bottom: 30px; }
+body > .row { margin-top: 20px; }
+body, h1, h2, h3, h4, h5 { font-family: 'Open Sans', sans-serif; }
+
+.block-list, .block-list li, #tags, #tags li { margin: 0; padding: 0; list-style: none; }
 .text-right { text-align: right; }
 
-header#header { background: #999; margin-bottom: 10px; }
-header#header h1 { font-size: 2.25rem; color: #ddd; }
-header#header h1 small { font-size: 2rem; color: #eee; }
+header#header { background: #333; margin-bottom: 10px; border-bottom: 6px #52A540 solid; padding-top: 5px; }
+header#header h1 { font-size: 1.25rem; color: #ddd; text-transform: uppercase; }
+header#header h1 small { font-size: 1.25rem; color: #eee; text-transform: capitalize; }
 
 
 /* -----------------------------------------
    Map
 ----------------------------------------- */
-#map-canvas { width: 100%; height: 600px; margin-top: 10px; }
+#map-canvas { width: 100%; height: 600px; margin: 0 0 20px; }
+#map-canvas img { max-width : none; }
 .maps-details-footer { position: absolute; bottom: 0; width: 100%; }
 
 .maps-info-title .icon-left-dir
@@ -409,7 +417,7 @@ header#header h1 small { font-size: 2rem; color: #eee; }
     cursor:pointer;
 }
 
-.filters h2 { font-size: 2rem; }
+.filters h2 { font-size: 2rem; line-height: 2rem; color: #52A540; }
 .filters li { margin-bottom: 5px; }
 .filters a[class*=icon] { padding: 5px; border-radius: 5px; background: white; color: black; display: inline-block; width: 100%; }
 .filters a[class*=icon]:before { font-size: 130%; margin-right: 10px; }
@@ -422,6 +430,11 @@ header#header h1 small { font-size: 2rem; color: #eee; }
 .filters a.icon-vimeo.active:before { color: #aad450; }
 .filters a.icon-heart.active:before { color: red; }
 
+#tags { max-height: 600px; overflow: auto; }
+#tags li { font-size: 0.75rem; background: #eee; border-radius: 5px; display: inline-block; padding: 3px 5px; margin: 0 5px 5px 0; }
+#tags li:hover { background: #ddd; cursor: pointer; }
+#tags li.active { background: #d9272e; color: white; }
+#tags .count { font-weight: bold; }
 
 .filters li a:hover { background: #ddd; }
 

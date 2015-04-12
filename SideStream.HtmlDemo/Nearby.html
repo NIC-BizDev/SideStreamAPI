@@ -27,6 +27,7 @@
                 <li><a href="#" class="icon-twitter" data-layer="Twitter">Twitter</a></li>
                 <li><a href="#" class="icon-flickr active" data-layer="Flickr">Flickr</a></li>
                 <li><a href="#" class="icon-vimeo" data-layer="Vimeo">Vimeo</a></li>
+                <li><a href="#" class="icon-picture" data-layer="Activities">Activities</a></li>
                 <li><a href="#" class="icon-heart" data-layer="Favorites">Favorites</a></li>
             </ul>
         </div>
@@ -34,7 +35,8 @@
             <div id="map-canvas"></div>
         </div>
         <div class="large-6 medium-6 columns">
-            List
+            <ul id="tags">
+            </ul>
         </div>
     </div>
     
@@ -98,9 +100,9 @@
             <div id="infobox" class="maps-info maps-info-flickr">
 
                 <div class="maps-info-title">
-                    <div class="glyphicon icon-left-dir" onclick="layerManager.previousMarker();"></div>
+                    <div class="icon-left-dir" onclick="layerManager.previousMarker();"></div>
                     <div class="maps-info-title-text"><span data-bind="text: title"></span></div>
-                    <div class="glyphicon icon-right-dir text-right" onclick="layerManager.nextMarker();"></div>
+                    <div class="icon-right-dir text-right" onclick="layerManager.nextMarker();"></div>
                 </div>
                 <div class="maps-info-body">
                     <img data-bind="attr:{src: thumbnail}" />
@@ -178,7 +180,9 @@
         <script type="text/javascript">
 
             // ----- Settings -----
-            NIC4Outdoors.apiPath = 'http://nic4outdoors.azurewebsites.net/api/';
+            // NIC4Outdoors.apiPath = 'http://nic4outdoors.azurewebsites.net/api/';
+            NIC4Outdoors.apiPath = 'http://nic4outdoors.azurewebsites.net/sidestream/api/';
+            // NIC4Outdoors.apiPath = '../api/';
             var mapRefreshDelay = 500; // in ms
 
             // ----- Objects -----
