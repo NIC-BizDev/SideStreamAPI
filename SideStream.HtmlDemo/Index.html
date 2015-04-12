@@ -171,7 +171,10 @@
                         <img data-bind="attr:{src: thumbnail}" /><br>
                         <small>by: <span data-bind="text: owner"></span></small>
                     </div>
-                    <div class="large-16 medium-14 columns description" data-bind="html: desc"></div>
+                    <div class="large-16 medium-14 columns description">
+                        <span data-bind="html: desc"></span>
+                        <span data-bind="foreach: tags"><span data-bind="text: '#' + $data + '  '"></span></span>
+                    </div>
                 </div>
                 <div class="row footer">
                     <div class="large-12 medium-12 columns date" data-bind="text: taken"></div>
