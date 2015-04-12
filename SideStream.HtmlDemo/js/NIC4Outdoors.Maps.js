@@ -18,6 +18,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         content: ""
     });
     
+    var remainingRecords = 0;
+    var displayedRecords = 0;
 
     var getContent;
     var infoBox = new InfoBox({
@@ -103,6 +105,12 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         infoBox.close();
     };
 
+    this.getMarkerShowing = function () {
+        return displayedRecords;
+    };
+    this.getMarkerTotal = function () {
+        return (remainingRecords + displayedRecords);
+    };
 
     this.getMarkerCount = function()
     {
@@ -161,6 +169,8 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             loadLayer(value,clear);
         });
 
+        remainingRecords = data.remainingRecords;
+
         indexTags();
 
     }
@@ -168,11 +178,16 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
     function indexTags()
     {
         tags = [];
+
+        displayedRecords = 0;
+        
         $.each(layers, function (ds, layer) {
             if (layer.type == 'PointLayer' && $.inArray(layer.ds,selectedFilters) >= 0) {
                 layer.mapLayer.forEach(function (feature) {
 
                     var dataTags = feature.getProperty('tags');
+
+                    displayedRecords++;
 
                         // Build count for each tag
                         $.each(dataTags, function (index, value) {
