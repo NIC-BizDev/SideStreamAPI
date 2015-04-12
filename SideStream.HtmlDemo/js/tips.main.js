@@ -50,10 +50,10 @@ $(function(){
 		  data: JSON.stringify({ 
 		  		"ridbId": id, 
 		  		"description": tip
-		  }),
-		  success: function (res) {
-		  	console.log(res);
-		  }
+		  })
+		}).complete(function (e) {
+			$("#userTip").val("");
+			//console.log("haha")
 		});
 	});
 	
