@@ -115,9 +115,12 @@ namespace SideStream.API.Services
                 point.Properties.Add("phone", b.phone);
 
                 IList<string> tags = new List<string>();
-                foreach(var c in b.categories)
+                if (b.categories != null)
                 {
-                    tags.Add(c[0].ToString().Replace(" ","").ToLower());
+                    foreach (var c in b.categories)
+                    {
+                        tags.Add(c[0].ToString().Replace(" ", "").ToLower());
+                    }
                 }
 
                 point.AddTags(tags);

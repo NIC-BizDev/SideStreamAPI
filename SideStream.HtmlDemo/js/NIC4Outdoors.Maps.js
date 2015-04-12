@@ -161,6 +161,44 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
             loadLayer(value,clear);
         });
 
+        indexTags();
+
+    }
+
+    function indexTags()
+    {
+        tags = [];
+        $.each(layers, function (ds, layer) {
+            if (layer.type == 'PointLayer') {
+
+                layer.mapLayer.forEach(function (feature) {
+
+                    var dataTags = feature.getProperty('tags');
+
+                        // Build count for each tag
+                        $.each(dataTags, function (index, value) {
+                            if (!tags[value] && tags[value] != 0) tags[value] = 1;
+                            else tags[value] += 1;
+                        })
+
+                    });
+
+            }
+        });
+
+       
+
+        for (var name in tags) {
+            if (tags.hasOwnProperty(name)) {
+                var count = tags[name];
+                var active = '';
+                // console.log($.inArray(name,selectedTags), selectedTags, name);
+                if ($.inArray(name, selectedTags) >= 0) active = 'class="active"';
+                // console.log(selectedTags);
+                if (count > 0) tagsList.append('<li data-tag="' + name + '"' + active + '>' + name + ' <span class="count">' + count + '</span></li>');
+            }
+        }
+        tagsList.find('.active').prependTo(tagsList);
     }
 
     function loadLayer(jsonLayer,clear)
@@ -214,31 +252,31 @@ NIC4Outdoors.Maps.LayerManager = function(googleMap){
         // console.log(jsonLayer.data.features);
 
         // Build tags variable and get count
-        tags = [];
-        $.each(jsonLayer.data.features,function(index,value){
+        //tags = [];
+        //$.each(jsonLayer.data.features,function(index,value){
 
-            var dataTags = value.properties.tags;
+        //    var dataTags = value.properties.tags;
 
-            // Build count for each tag
-            $.each(dataTags,function(index,value){
-                if(!tags[value] && tags[value] != 0) tags[value] = 1;
-                else tags[value] += 1;
-            })
+        //    // Build count for each tag
+        //    $.each(dataTags,function(index,value){
+        //        if(!tags[value] && tags[value] != 0) tags[value] = 1;
+        //        else tags[value] += 1;
+        //    })
 
-        })
+        //})
 
         // Display the tags
-        for (var name in tags) {
-          if (tags.hasOwnProperty(name)) {
-            var count = tags[name];
-            var active = '';
-            // console.log($.inArray(name,selectedTags), selectedTags, name);
-            if($.inArray(name,selectedTags) >= 0) active = 'class="active"';
-            // console.log(selectedTags);
-            if(count > 0) tagsList.append('<li data-tag="'+name+'"'+active+'>'+name+' <span class="count">'+count+'</span></li>');
-          }
-        }
-        tagsList.find('.active').prependTo(tagsList);
+        //for (var name in tags) {
+        //  if (tags.hasOwnProperty(name)) {
+        //    var count = tags[name];
+        //    var active = '';
+        //    // console.log($.inArray(name,selectedTags), selectedTags, name);
+        //    if($.inArray(name,selectedTags) >= 0) active = 'class="active"';
+        //    // console.log(selectedTags);
+        //    if(count > 0) tagsList.append('<li data-tag="'+name+'"'+active+'>'+name+' <span class="count">'+count+'</span></li>');
+        //  }
+        //}
+        //tagsList.find('.active').prependTo(tagsList);
 
         // console.log(tags);
 
