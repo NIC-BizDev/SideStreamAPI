@@ -66,7 +66,11 @@ namespace SideStream.API.Services
             searchOptions.BoundaryBox = bndry;
 
             if (!(tags == null || tags.Length < 1))
-                searchOptions.Tags =  string.Join(",",tags);
+            {
+                searchOptions.Tags = string.Join(",", tags);
+                searchOptions.TagMode = TagMode.AllTags;
+            }
+                
 
             searchOptions.Accuracy = GeoAccuracy.Street;
 

@@ -64,6 +64,7 @@ namespace SideStream.API.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IPointLayerProvider>().To<FlickrService>();
+            kernel.Bind<IPointLayerProvider>().To<YelpService>();
             // kernel.Bind<IPointLayerProvider>().To<ActivitiesService>();
         }        
     }
